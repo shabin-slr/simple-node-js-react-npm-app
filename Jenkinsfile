@@ -8,13 +8,19 @@ pipeline {
     stages {
 	stage('Snyk Scan') {
 		steps {
-			snykSecurity monitorProjectOnBuild: false, projectName: 'simple-node-js-react-npm-app', snykInstallation: 'snyk@latest', snykTokenId: 'Synk Token'
+		    snykSecurity monitorProjectOnBuild: false, projectName: 'simple-node-js-react-npm-app', snykInstallation: 'snyk@latest', snykTokenId: 'Synk Token'
 		}
 	}
         stage('Build') { 
             steps {
-		sh 'npm install' 
+		        sh 'npm install'
+                sh 'npm build'
             }
         }
+        // stage('Deploy'){
+        //     steps {
+        //         sh 'npm start'
+        //     }
+        // }
     }
 }
